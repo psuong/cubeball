@@ -1,15 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Score : MonoBehaviour {
+[CreateAssetMenu(fileName = "Score", menuName = "Scriptable Objects/Score")]
+public class Score : ScriptableObject
+{
+	private uint score = 0;
 
-	// Use this for initialization
-	void Start () {
-	
+	public void Earn()
+	{
+		score++;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public void Spend()
+	{
+		if (score < 1)
+			return;
+		score--;
+	}
+
+	public void Reset()
+	{
+		score = 0;
 	}
 }
