@@ -32,7 +32,7 @@ public class JSONRequest : MonoBehaviour
 		internalTimer -= Time.deltaTime;
 		if (internalTimer < 0)
 		{
-			internalTimer = 0f;
+			internalTimer = intervalTimer;
 			if (urlRequest == null)
 			{
 				urlRequest = StartCoroutine(RequestURL());
@@ -47,6 +47,6 @@ public class JSONRequest : MonoBehaviour
 		JSONData = wwwObject.text;
 
 		urlRequest = null;
-		Debug.LogFormat("JSON: {0}", wwwObject.text);
+		// Debug.LogFormat("JSON: {0}", wwwObject.text);
 	}
 }

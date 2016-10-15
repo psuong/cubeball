@@ -5,7 +5,7 @@ using System;
 public class PlayerMovement : MonoBehaviour {
     private bool[,] fieldMatrix;
     public float movementInterval = 1f;
-    private Players playerInputs;
+    private Players playerInputs = new Players();
     private bool isPlaying = true;
     private JSONRequest jsonRequest;
     [SerializeField]
@@ -15,18 +15,10 @@ public class PlayerMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         fieldMatrix = GetComponent<FieldMatrix>().playingfield;
-        Debug.Log(fieldMatrix == null);
         players = GameObject.FindGameObjectsWithTag("Player");
         jsonRequest = GetComponent<JSONRequest>();
-        Invoke("StartRoutine", 1);
-
-    }
-
-    private void StartRoutine()
-    {
         StartCoroutine(movementUpdater());
     }
-
 
     private void MovePlayer(int i , string instruction)
     {
@@ -37,11 +29,13 @@ public class PlayerMovement : MonoBehaviour {
         {
             if(fieldMatrix[(int)goalPosition.x,(int)goalPosition.z] == false)
             {
-                fieldMatrix[(int)goalPosition.x, (int)goalPosition.z] = true;
-                players[i].transform.position = Vector3.MoveTowards(players[i].transform.position, goalPosition, 1f);
                 fieldMatrix[(int)players[i].transform.position.x, (int)players[i].transform.position.z] = false;
+
+                players[i].transform.position = Vector3.MoveTowards(players[i].transform.position, goalPosition, 1f);
+                fieldMatrix[(int)goalPosition.x, (int)goalPosition.z] = true;
+
             }
-            
+
         }
         catch(IndexOutOfRangeException)
         {
@@ -50,10 +44,10 @@ public class PlayerMovement : MonoBehaviour {
     }
 
 
-    public Players UpdatePlayerInputs(string JSONstring)
+    public PlayersWrapper UpdatePlayerInputs(string JSONstring)
     {
         if (JSONstring != string.Empty) {
-            return JsonUtility.FromJson<PlayersWrapper>(JSONstring).players[0];
+            return JsonUtility.FromJson<PlayersWrapper>(JSONstring);
 
         }
         return null;
@@ -87,11 +81,17 @@ public class PlayerMovement : MonoBehaviour {
 
     private IEnumerator movementUpdater()
     {
-        yield return null;
         while( isPlaying == true)
         {
             yield return new WaitForSeconds(movementInterval);
-            playerInputs = UpdatePlayerInputs(jsonRequest.JSONData);
+            while (jsonRequest.JSONData == string.Empty)
+            {
+                // Wait until there is actually a string to process
+                yield return null;
+            }
+            playerInputs = UpdatePlayerInputs(jsonRequest.JSONData).players[0];
+            Debug.Log(playerInputs.x0);
+            Debug.Log(playerInputs.x0);
             MovePlayer(0, playerInputs.x0);
             MovePlayer(1, playerInputs.x1);
             MovePlayer(2, playerInputs.x2);
@@ -103,7 +103,6 @@ public class PlayerMovement : MonoBehaviour {
             Debug.Log("*");
 
         }
-
 
     }
 
