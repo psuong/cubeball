@@ -41,7 +41,7 @@ public class Goal : MonoBehaviour
 
 #if UNITY_EDITOR_64 || UNITY_EDITOR
 
-			Debug.LogFormat("Score: {0}", score.GetScore);
+			Debug.LogWarningFormat("Score: {0}", score.GetScore);
 
 #endif
 		}
