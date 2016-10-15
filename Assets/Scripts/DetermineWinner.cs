@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class DetermineWinner : MonoBehaviour {
     private float gameTimer;
-    public float roundTime = 180f;
 
     public Score BlueTeam;
     public Score RedTeam;
@@ -20,7 +19,7 @@ public class DetermineWinner : MonoBehaviour {
    
     // Use this for initialization
     void Start () {
-        gameTimer = GetComponent<GameTimer>().timer;
+        gameTimer = GetComponent<GameTimer>().Timer;
 	}
 
 
@@ -48,7 +47,7 @@ public class DetermineWinner : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (gameTimer == roundTime)
+        if (gameTimer == 0f)
         {
             InvokeTimesUp();
         }
