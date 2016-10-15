@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementInterval: 1
+  players: []
 --- !u!114 &1859961938
 MonoBehaviour:
   m_ObjectHideFlags: 0

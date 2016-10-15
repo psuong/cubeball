@@ -23,16 +23,26 @@ public class SpawnPlayers : MonoBehaviour {
     {
         var spawnOffset = (x - numberOfPlayers/2) / 2;
         Debug.Log(numberOfPlayers / 2);
+        var j = 0;
         for (int i = 0; i < numberOfPlayers/2; i++)
         {
             var centeringOffset = spawnOffset + i;
             var playerTeam1 = Instantiate(playerPrefab, new Vector3(centeringOffset, .5f, 1f), Quaternion.identity) as GameObject;
             SetTeamColor(playerTeam1, Color.red);
+            SetTeamNumber(playerTeam1, j);
             field[centeringOffset, 1] = true;
             var playerTeam2 = Instantiate(playerPrefab, new Vector3(centeringOffset, .5f, z - 1), Quaternion.identity) as GameObject;
             SetTeamColor(playerTeam2, Color.blue);
             field[centeringOffset, z - 1] = true;
+            SetTeamNumber(playerTeam2, ++j);
+            ++j;
         }
+    }
+
+    private void SetTeamNumber(GameObject go, int playerindex)
+    {
+        var textMesh = go.GetComponentInChildren<TextMesh>();
+        textMesh.text = (playerindex + 1).ToString();
     }
 	
     private void SetTeamColor(GameObject go, Color color)
