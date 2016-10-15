@@ -13,6 +13,8 @@ public class Goal : MonoBehaviour
 
 	[SerializeField]
 	private Score score;
+	[SerializeField]
+	private GoalEvent goalEvent;
 	private Collider collider;
 
 	private void Start()
@@ -30,6 +32,11 @@ public class Goal : MonoBehaviour
 			if (earnEvent != null)
 			{
 				earnEvent(score.GetScore, team);
+			}
+
+			if (goalEvent != null)
+			{
+				goalEvent.Invoke(other.gameObject);
 			}
 
 #if UNITY_EDITOR_64 || UNITY_EDITOR

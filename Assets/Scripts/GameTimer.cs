@@ -11,7 +11,8 @@ public class GameTimer : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
         StartCoroutine("gameTimer");
 	}
 

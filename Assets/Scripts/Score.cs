@@ -4,6 +4,7 @@ using System.Collections;
 [CreateAssetMenu(fileName = "Score", menuName = "Scriptable Objects/Score")]
 public class Score : ScriptableObject
 {
+	[SerializeField]
 	private int score = 0;
 
 #region Accessor

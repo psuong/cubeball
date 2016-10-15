@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class BallManager : MonoBehaviour 
@@ -6,7 +7,11 @@ public class BallManager : MonoBehaviour
 	public float ballTimer = 2f;
 	public Vector3 spawnPosition;
 
-	private Queue<GameObject> ballQueue = new Queue<GameObject>();
+	[SerializeField]
+	private GoalEvent goalEvent;
+
+	private Queue<GameObject> ballQueue;
+	private Coroutine routine;
 
 	private void Start()
 	{
@@ -15,10 +20,12 @@ public class BallManager : MonoBehaviour
 
 	private void OnEnable()
 	{
+		goalEvent.Subscribe(EnQueue);
 	}
 
 	private void OnDisable()
 	{
+		goalEvent.Unsubscribe(EnQueue);
 	}
 
 	private void EnQueue(GameObject gameObject)
@@ -28,21 +35,24 @@ public class BallManager : MonoBehaviour
 
 		// Move the gameObject back to the spawn position
 		gameObject.transform.position = spawnPosition;
-		
+		ballQueue.Enqueue(gameObject);
 		DeQueue();
 	}
 
 	private void DeQueue()
 	{
-		// TODO: Dequeue the immediate gameObject in the queue
-		var ball = ballQueue.Dequeue();
-		var timer = 0f;
-
-		while (timer < ballTimer)
+		if (routine == null)
 		{
-			timer += Time.deltaTime;
+			routine = StartCoroutine(BallTimer());
 		}
+	}
 
+	private IEnumerator BallTimer()
+	{
+		yield return new WaitForSeconds(ballTimer);
+		var ball = ballQueue.Dequeue();
 		ball.SetActive(true);
+
+		routine = null;
 	}
 }
