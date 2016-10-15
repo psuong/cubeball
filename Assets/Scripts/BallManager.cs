@@ -3,9 +3,6 @@ using System.Collections.Generic;
 
 public class BallManager : MonoBehaviour 
 {
-	public delegate void OnQueueHandler(GameObject gameObject);
-	public static event OnQueueHandler onQueueEvent;
-
 	public float ballTimer = 2f;
 	public Vector3 spawnPosition;
 
@@ -18,12 +15,10 @@ public class BallManager : MonoBehaviour
 
 	private void OnEnable()
 	{
-		onQueueEvent += EnQueue;
 	}
 
 	private void OnDisable()
 	{
-		onQueueEvent -= EnQueue;
 	}
 
 	private void EnQueue(GameObject gameObject)
