@@ -11,6 +11,10 @@ public class PlayerMovement : MonoBehaviour {
         fieldMatrix = GetComponent<FieldMatrix>().playingfield;
 	}
 
+    /// <summary>
+    /// Moves single player to position if the place in the field is not taken
+    /// </summary>
+    /// <param name="instruction">the text instruction from a player</param>
     private void MovePlayer(string instruction)
     {
         var goalPosition = transform.position + GetOffsetVector(instruction);
