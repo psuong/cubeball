@@ -26,6 +26,8 @@ public class FieldGenerator : MonoBehaviour {
             for(int j = 0; j <=z; j++)
             {
                 var tile = Instantiate(fieldSquare);
+                var fieldRenderer = tile.GetComponent<Renderer>();
+                fieldRenderer.material.color = Color.green;
                 tile.transform.position = new Vector3(i, 0, j);
             }
         }
@@ -38,8 +40,8 @@ public class FieldGenerator : MonoBehaviour {
             var otherOutterTile = Instantiate(fieldSquare);
             otherOutterTile.transform.position = new Vector3(x, 0f, zplace);
             var otherRenderer = otherOutterTile.GetComponent<Renderer>();
-            renderer.material.color = Color.red;
-            otherRenderer.material.color = Color.red;
+            renderer.material.color = Color.black;
+            otherRenderer.material.color = Color.black;
         }
 
         for(int xplace = -1;xplace <x; xplace++)
@@ -47,11 +49,11 @@ public class FieldGenerator : MonoBehaviour {
             var outTile = Instantiate(fieldSquare);
             var outRenderer = outTile.GetComponent<Renderer>();
             outTile.transform.position = new Vector3(xplace, 0f, -1f);
-            outRenderer.material.color = Color.red;
+            outRenderer.material.color = Color.black;
             var outTile2 = Instantiate(fieldSquare);
             var outRenderer2 = outTile2.GetComponent<Renderer>();
             outTile2.transform.position = new Vector3(xplace, 0f, z+1);
-            outRenderer2.material.color = Color.red;
+            outRenderer2.material.color = Color.black;
 
         }
     }
