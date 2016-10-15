@@ -34,7 +34,11 @@ public class DetermineWinner : MonoBehaviour {
 
     private void GetWinner()
     {
-        if (BlueTeam.GetScore > RedTeam.GetScore)
+        if(BlueTeam.GetScore == RedTeam.GetScore)
+        {
+            winnerText.text = "TIE";
+        }
+        else if (BlueTeam.GetScore > RedTeam.GetScore)
         {
             winnerText.text = "Blue Team Wins";
         }
