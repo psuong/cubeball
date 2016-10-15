@@ -8,6 +8,7 @@ public class SpawnPlayers : MonoBehaviour {
     public int numberOfPlayers = 8;
     private int x;
     private int z;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -15,13 +16,13 @@ public class SpawnPlayers : MonoBehaviour {
         field = fieldMatrix.playingfield;
         x = fieldMatrix.x;
         z = fieldMatrix.z;
-
         SpawnInField();
 	}
 
     private void SpawnInField()
     {
         var spawnOffset = (x - numberOfPlayers/2) / 2;
+        Debug.Log(numberOfPlayers / 2);
         for (int i = 0; i < numberOfPlayers/2; i++)
         {
             var centeringOffset = spawnOffset + i;

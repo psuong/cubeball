@@ -164,6 +164,8 @@ GameObject:
   - 114: {fileID: 1859961934}
   - 114: {fileID: 1859961933}
   - 114: {fileID: 1859961936}
+  - 114: {fileID: 1859961938}
+  - 114: {fileID: 1859961937}
   m_Layer: 0
   m_Name: Field Manager
   m_TagString: Untagged
@@ -224,6 +226,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldSquare: {fileID: 1000011419330996, guid: 8182637c5a679bf4aaab59ef8ea17251,
     type: 2}
+--- !u!114 &1859961937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1859961932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54345df98484750428eaa428f6180d3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementInterval: 1
+--- !u!114 &1859961938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1859961932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78bb77b01a34d774fac73a68d12d12b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intervalTimer: 2
+  JSONData: 
+  URL: https://cubeball-webhook-psuong.c9users.io/queue
 --- !u!1 &1996993980
 GameObject:
   m_ObjectHideFlags: 0

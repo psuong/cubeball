@@ -20,17 +20,10 @@ public class PlayersWrapper
     public Players[] players;
 }
 public class ProcessJSON : MonoBehaviour {
-   
+    
 
-    public string JSONstring;
-    public PlayersWrapper wrapper;
-
-
-    // Use this for initialization
-    void Start () {
-        wrapper = JsonUtility.FromJson<PlayersWrapper>(JSONstring);
-
-	}
+    
+    
 	
 	// Update is called once per frame
 	void Update () {
