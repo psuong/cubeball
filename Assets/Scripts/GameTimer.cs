@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameTimer : MonoBehaviour {
     [SerializeField]
-    public float timer = 0f;
+    private float timer = 0f;
 
 	// Use this for initialization
 	void Start () {
