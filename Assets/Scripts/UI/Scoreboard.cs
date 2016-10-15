@@ -1,9 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+public enum Team
+{
+	Red,
+	Blue
+}
+
 public class Scoreboard: MonoBehaviour 
 {
 	public Text scoreText;
+	public Team team;
 
 	private void Start()
 	{
@@ -15,11 +22,14 @@ public class Scoreboard: MonoBehaviour
 		Goal.earnEvent -= UpdateScore;
 	}
 
-	private void UpdateScore(int score)
+	private void UpdateScore(int score, Team team)
 	{
 		if (scoreText != null)
 		{
-			scoreText.text = string.Format("{0}", score);
+			if (this.team == team)
+			{
+				scoreText.text = string.Format("{0}", score);
+			}
 		}
 	}
 

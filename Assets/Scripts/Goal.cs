@@ -4,10 +4,11 @@ using System.Collections;
 [RequireComponent(typeof(BoxCollider))]
 public class Goal : MonoBehaviour 
 {
-	public delegate void OnEarnHandler(int score);
+	public delegate void OnEarnHandler(int score, Team team);
 	public static event OnEarnHandler earnEvent;
 
 	public string tagToCompare = "Ball";
+	public Team team;
 	public bool isColliderTrigger;
 
 	[SerializeField]
@@ -22,20 +23,19 @@ public class Goal : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (score != null)
+		if (other.CompareTag(tagToCompare))
 		{
-			if (other.CompareTag(tagToCompare))
+			score.Earn();
+			// Invoke the event
+			if (earnEvent != null)
 			{
-
-				score.Earn();
-				// Invoke the event
-				earnEvent(score.GetScore);
+				earnEvent(score.GetScore, team);
+			}
 #if UNITY_EDITOR_64 || UNITY_EDITOR
 
-				Debug.LogFormat("Score: {0}", score.GetScore);
+			Debug.LogFormat("Score: {0}", score.GetScore);
 
 #endif
-			}
 		}
 	}
 }
