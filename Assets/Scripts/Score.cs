@@ -4,11 +4,11 @@ using System.Collections;
 [CreateAssetMenu(fileName = "Score", menuName = "Scriptable Objects/Score")]
 public class Score : ScriptableObject
 {
-	private uint score = 0;
+	private int score = 0;
 
 #region Accessor
 
-	public uint GetScore { get { return score; } }
+	public int GetScore { get { return score; } }
 
 #endregion
 

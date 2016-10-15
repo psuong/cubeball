@@ -4,6 +4,9 @@ using System.Collections;
 [RequireComponent(typeof(BoxCollider))]
 public class Goal : MonoBehaviour 
 {
+	public delegate void OnEarnHandler(int score);
+	public static event OnEarnHandler earnEvent;
+
 	public string tagToCompare = "Ball";
 	public bool isColliderTrigger;
 
@@ -25,9 +28,12 @@ public class Goal : MonoBehaviour
 			{
 
 				score.Earn();
-
+				// Invoke the event
+				earnEvent(score.GetScore);
 #if UNITY_EDITOR_64 || UNITY_EDITOR
+
 				Debug.LogFormat("Score: {0}", score.GetScore);
+
 #endif
 			}
 		}
