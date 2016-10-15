@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿// Initializes the playing field matrix to keep track of what spaces are filled in the field
+using UnityEngine;
 using System.Collections;
 
 
@@ -8,12 +9,15 @@ public class FieldMatrix : MonoBehaviour {
     public int x= 6;
     public int z = 20;
 
-         
-	// Use this for initialization
+             
 	void OnEnable () {
         field = new bool[x, z];    
 	}
 	
+    void Start()
+    {
+      
+    }
 	// Update is called once per frame
 	void Update () {
 	

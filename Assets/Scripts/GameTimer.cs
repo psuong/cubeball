@@ -2,40 +2,51 @@
 using System.Collections;
 
 public class GameTimer : MonoBehaviour {
-    [SerializeField]
-    public float timer = 0f;
     public float roundTime = 180f;
+    [SerializeField]
+    private float timer = 180f;
+    public float Timer {get  { return timer; } }
+    private bool isRunning = true;
 
-    public delegate void TimeUpHandler();
-    public static event TimeUpHandler TimeUpEvent;
-
+    void OnEnable()
+    {
+        DetermineWinner.TimeUpEvent += ResetTimer;
+    }
 
 	// Use this for initialization
-	void Start () 
-	{
+	void Start () {
+        timer = roundTime;
         StartCoroutine("gameTimer");
 	}
 
-    public static void InvokeTimesUp()
-    {
-        if(TimeUpEvent != null)
-        {
-            TimeUpEvent();
-        }
-    }
-
     private IEnumerator gameTimer()
     {
-        yield return new WaitForSeconds(1f);
-        timer += 1;
+        while (isRunning)
+        {
+            yield return new WaitForSeconds(1f);
+            timer -= 1;
+        }
+       
+    }
+
+    public void PauseTimer()
+    {
+        StopCoroutine("gameTimer");
+        isRunning = false;
+    }
+
+    public void ResumeTimer()
+    {
+        isRunning = true;
+        StartCoroutine("gameTimer");
+    }
+
+    private void ResetTimer()
+    {
+        StopCoroutine("gameTimer");
+        isRunning = false;
+        timer = roundTime;
     }
 	
-	// Update is called once per frame
-	void Update () {
-        if (timer == roundTime)
-        {
-            InvokeTimesUp();
-        }
-	
-	}
+
 }
