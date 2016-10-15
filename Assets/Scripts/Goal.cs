@@ -23,7 +23,12 @@ public class Goal : MonoBehaviour
 		{
 			if (other.CompareTag(tagToCompare))
 			{
+
 				score.Earn();
+
+#if UNITY_EDITOR_64 || UNITY_EDITOR
+				Debug.LogFormat("Score: {0}", score.GetScore);
+#endif
 			}
 		}
 	}

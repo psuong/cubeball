@@ -33,3 +33,10 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Local Testing
+/Assets/Test/
+/Assets/Test*
+
+# Vim
+*.swp*

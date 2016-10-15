@@ -6,6 +6,12 @@ public class Score : ScriptableObject
 {
 	private uint score = 0;
 
+#region Accessor
+
+	public uint GetScore { get { return score; } }
+
+#endregion
+
 	public void Earn()
 	{
 		score++;
