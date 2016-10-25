@@ -21,6 +21,9 @@ public class FieldGenerator : MonoBehaviour
 	
 	}
 
+	/// <summary>
+	/// Setups the field. Playing field is set to green, outter area is black and raised
+	/// </summary>
 	private void SetupField ()
 	{
 		for (int i = 0; i < x; i++) {
@@ -73,9 +76,5 @@ public class FieldGenerator : MonoBehaviour
 		}
 	}
 	
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
+
 }
