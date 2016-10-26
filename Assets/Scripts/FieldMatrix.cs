@@ -13,13 +13,5 @@ public class FieldMatrix : MonoBehaviour {
 	void OnEnable () {
         field = new bool[x, z];    
 	}
-	
-    void Start()
-    {
-      
-    }
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }
